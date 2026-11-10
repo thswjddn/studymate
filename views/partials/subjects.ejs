@@ -1,0 +1,67 @@
+
+<section class="subject-section">
+  <div class="section-heading">
+    <div>
+      <h2>📚 나의 과목 관리</h2>
+      <p>과목을 등록하고 나만의 학습 공간을 만들어 보세요.</p>
+    </div>
+    <span class="subject-count">
+      총 <%= subjects.length %>개 과목
+    </span>
+  </div>
+
+  <form action="/subjects" method="POST" class="subject-form">
+    <input
+      type="text"
+      name="name"
+      placeholder="새 과목 이름 (예: 데이터베이스)"
+      maxlength="100"
+      required
+    >
+
+    <select name="color">
+      <option value="#6366f1">보라색</option>
+      <option value="#0ea5e9">파란색</option>
+      <option value="#10b981">초록색</option>
+      <option value="#f59e0b">주황색</option>
+      <option value="#ec4899">분홍색</option>
+    </select>
+
+    <button type="submit" class="primary-btn">
+      + 과목 추가
+    </button>
+  </form>
+
+  <div class="subject-grid">
+    <% if (subjects.length === 0) { %>
+      <div class="empty-subject">
+        아직 등록된 과목이 없습니다.
+        첫 번째 과목을 추가해 보세요!
+      </div>
+    <% } %>
+
+    <% subjects.forEach(subject => { %>
+      <div class="subject-card">
+        <div
+          class="subject-color"
+          style="background-color: <%= subject.color %>"
+        ></div>
+
+        <div class="subject-info">
+          <h3><%= subject.name %></h3>
+          <p>나의 학습 과목</p>
+        </div>
+
+        <form
+          action="/subjects/<%= subject.id %>/delete"
+          method="POST"
+          onsubmit="return confirm('이 과목을 삭제할까요? 관련 공부 기록도 삭제됩니다.');"
+        >
+          <button type="submit" class="delete-btn">
+            삭제
+          </button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</section>

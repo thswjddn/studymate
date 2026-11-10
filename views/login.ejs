@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyMate AI - 로그인</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-body">
+  <div class="auth-card">
+    <div class="logo">✦ StudyMate AI</div>
+    <h1>다시 만나서 반가워요!</h1>
+    <p class="muted">오늘도 목표를 향해 공부해 볼까요?</p>
+
+    <% if (error) { %>
+      <div class="error"><%= error %></div>
+    <% } %>
+
+    <form action="/login" method="POST">
+      <label>이메일</label>
+      <input type="email" name="email"
+        placeholder="이메일 입력" required>
+
+      <label>비밀번호</label>
+      <input type="password" name="password"
+        placeholder="비밀번호 입력" required>
+
+      <button class="primary-btn" type="submit">
+        로그인
+      </button>
+    </form>
+
+    <p class="center muted">
+      계정이 없으신가요?
+      <a href="/register">회원가입</a>
+    </p>
+  </div>
+</body>
+</html>

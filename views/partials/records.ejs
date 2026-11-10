@@ -1,0 +1,52 @@
+
+<section class="record-section">
+
+  <div class="section-heading">
+    <div>
+      <h2>⏱ 공부 기록 관리</h2>
+      <p>오늘 공부한 내용을 기록해 보세요.</p>
+    </div>
+  </div>
+
+  <form action="/records" method="POST" class="subject-form">
+
+    <select name="subject_id" required>
+      <option value="">과목 선택</option>
+
+      <% subjects.forEach(subject => { %>
+        <option value="<%= subject.id %>">
+          <%= subject.name %>
+        </option>
+      <% }) %>
+    </select>
+
+    <input
+      type="number"
+      name="duration"
+      placeholder="공부 시간 (분)"
+      min="1"
+      max="1440"
+      required
+    >
+
+    <input
+      type="date"
+      name="study_date"
+      value="<%= new Date().toISOString().slice(0, 10) %>"
+      required
+    >
+
+    <input
+      type="text"
+      name="memo"
+      placeholder="공부 내용"
+      maxlength="1000"
+    >
+
+    <button type="submit" class="primary-btn">
+      + 기록 추가
+    </button>
+
+  </form>
+
+</section>
